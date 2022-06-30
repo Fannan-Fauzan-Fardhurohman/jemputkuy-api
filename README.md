@@ -125,7 +125,6 @@ Response
 
 ## User Driver Examples
 ### User Driver - Register
-### User Customer - Register
 
 ```
 POST /api/v1/user/driver/register
