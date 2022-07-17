@@ -15,6 +15,10 @@ data class UserRequest(
         return User.createNewUser(username, password, email, address, phone_number, first_name, last_name)
     }
 
+    fun mapToCustomer(): User {
+        return User.userCustomer(username, password, email, address, phone_number, first_name, last_name)
+    }
+
     fun mapToNewCustomer(): User {
         return User.createNewCustomer(username, password, email, address, phone_number, first_name, last_name)
     }

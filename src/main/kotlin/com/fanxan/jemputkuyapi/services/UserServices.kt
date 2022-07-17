@@ -9,4 +9,5 @@ interface UserServices {
     fun register(user: User):Result<Boolean>
     fun getUserByUsername(username:String):Result<User>
     fun getUserByUserId(id:String):Result<User>
+    fun updateUser(id: String, user: User): Result<Boolean>
 }

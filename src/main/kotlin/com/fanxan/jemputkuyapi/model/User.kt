@@ -82,5 +82,28 @@ data class User(
                 role = RoleEnum.DRIVER.id
             )
         }
+
+        fun userCustomer(
+            username: String,
+            password: String,
+            email: String,
+            address: String,
+            phone_number: String,
+            first_name: String,
+            last_name: String
+        ): User {
+            return User(
+                id = UUID.randomUUID().toString(),
+                username = username,
+                password = password,
+                email = email,
+                address = address,
+                phone_number = phone_number,
+                first_name = first_name,
+                last_name = last_name,
+                role = RoleEnum.DRIVER.id
+            )
+        }
+
     }
 }
