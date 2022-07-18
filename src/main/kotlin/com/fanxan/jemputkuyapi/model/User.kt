@@ -13,8 +13,8 @@ data class User(
         var first_name: String = "",
         var last_name: String = "",
         var phone_number: String = "",
-        var lat: String = "",
-        var lng: String = "",
+        var lat: Double = 0.0,
+        var lng: Double = 0.0,
         var role: Int = RoleEnum.CUSTOMER.id
 
 ) {
@@ -27,8 +27,8 @@ data class User(
                 phone_number: String,
                 first_name: String,
                 last_name: String,
-                lat: String,
-                lng: String
+                lat: Double,
+                lng: Double
         ): User {
             return User(
                     id = UUID.randomUUID().toString(),
@@ -52,8 +52,8 @@ data class User(
                 phone_number: String,
                 first_name: String,
                 last_name: String,
-                lat: String,
-                lng: String
+                lat: Double,
+                lng: Double
         ): User {
             return User(
                     id = UUID.randomUUID().toString(),
@@ -79,8 +79,8 @@ data class User(
                 phone_number: String,
                 first_name: String,
                 last_name: String,
-                lat: String,
-                lng: String
+                lat: Double,
+                lng: Double
         ): User {
             return User(
                     id = UUID.randomUUID().toString(),
@@ -105,8 +105,8 @@ data class User(
                 phone_number: String,
                 first_name: String,
                 last_name: String,
-                lat: String,
-                lng: String
+                lat: Double,
+                lng: Double
         ): User {
             return User(
                     id = UUID.randomUUID().toString(),

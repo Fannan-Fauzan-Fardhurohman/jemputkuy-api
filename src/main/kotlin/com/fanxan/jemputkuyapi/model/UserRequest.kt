@@ -10,8 +10,8 @@ data class UserRequest(
         var phone_number: String = "",
         var first_name: String = "",
         var last_name: String = "",
-        var lat: String = "",
-        var lng: String = ""
+        var lat: Double = 0.0,
+        var lng: Double = 0.0
 
 ) {
     fun mapToUser(): User {
