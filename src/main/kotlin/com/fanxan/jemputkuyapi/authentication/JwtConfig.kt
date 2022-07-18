@@ -26,28 +26,31 @@ class JwtConfig : WebSecurityConfigurerAdapter() {
     private lateinit var authenticationFilter: AuthenticationFilter
     override fun configure(http: HttpSecurity) {
         http.sessionManagement()
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
-            .csrf().disable()
-            .addFilterAt(authenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
-            .authorizeRequests()
-            .antMatchers(HttpMethod.POST, *postPermit.toTypedArray()).permitAll()
-            .antMatchers(HttpMethod.GET, *getPermit.toTypedArray()).permitAll()
-            .anyRequest().authenticated()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .csrf().disable()
+                .addFilterAt(authenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
+                .authorizeRequests()
+                .antMatchers(HttpMethod.POST, *postPermit.toTypedArray()).permitAll()
+                .antMatchers(HttpMethod.GET, *getPermit.toTypedArray()).permitAll()
+                .anyRequest().authenticated()
     }
 
 
     companion object {
         val postPermit = listOf(
-            "/api/v1/user/login",
-            "/api/v1/user/register",
-            "/api/v1/user/customer/register",
-            "/api/v1/user/customer/login",
-            "/api/v1/user/driver/register",
-            "/api/v1/user/driver/login",
+                "/api/v1/user/login",
+                "/api/v1/user/register",
+                "/api/v1/user/customer/register",
+                "/api/v1/user/customer/login",
+                "/api/v1/user/driver/register",
+                "/api/v1/user/driver/login",
         )
         val getPermit = listOf(
-            "/api/ping",
+                "/api/ping",
+                "/api/location/search",
+                "/api/location/reserve",
+                "/api/location/routes"
         )
 
         fun generatedToken(user: User): String {
@@ -56,11 +59,11 @@ class JwtConfig : WebSecurityConfigurerAdapter() {
             val granted = AuthorityUtils.commaSeparatedStringToAuthorityList(user.username)
             val grantedStream = granted.stream().map { it.authority }.collect(Collectors.toList())
             return Jwts.builder()
-                .setSubject(subject)
-                .claim(Constants.CLAIMS, grantedStream)
-                .setExpiration(expired)
-                .signWith(Keys.hmacShaKeyFor(Constants.SECRET.toByteArray()), SignatureAlgorithm.HS256)
-                .compact()
+                    .setSubject(subject)
+                    .claim(Constants.CLAIMS, grantedStream)
+                    .setExpiration(expired)
+                    .signWith(Keys.hmacShaKeyFor(Constants.SECRET.toByteArray()), SignatureAlgorithm.HS256)
+                    .compact()
         }
 
         fun isPremit(request: HttpServletRequest): Boolean {

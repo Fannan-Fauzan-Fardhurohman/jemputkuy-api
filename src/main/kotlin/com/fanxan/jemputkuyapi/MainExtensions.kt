@@ -1,5 +1,7 @@
 package com.fanxan.jemputkuyapi
 
+import com.fanxan.jemputkuyapi.location.entity.Coordinate
+
 inline fun <reified T> T?.orThrow(
     message: String = "${T::class.simpleName} is null"
 ): T {
@@ -23,4 +25,11 @@ fun <T> Result<T>.toResponse(): BaseResponse<T> {
     } else {
         BaseResponse.success(this.getOrNull())
     }
+}
+
+fun String.coordinateStringToData(): Coordinate {
+    val coordinateStrings = split(",")
+    val lat = coordinateStrings[0].toDoubleOrNull() ?: 0.0
+    val lng = coordinateStrings[1].toDoubleOrNull() ?: 0.0
+    return Coordinate(lat, lng)
 }

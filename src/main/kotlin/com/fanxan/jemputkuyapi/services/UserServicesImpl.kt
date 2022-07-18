@@ -46,4 +46,8 @@ class UserServicesImpl(
             it
         }
     }
+
+    override fun updateUser(id: String, user: User): Result<Boolean> {
+        return userRepository.updateUser(id, user)
+    }
 }

@@ -36,4 +36,12 @@ class CustomerController {
     ): BaseResponse<Boolean> {
         return userServices.register(userRequest.mapToNewCustomer()).toResponse()
     }
+
+    @PutMapping
+    fun updateCustomer(
+        @RequestBody user: UserRequest
+    ): BaseResponse<Boolean> {
+        val id = SecurityContextHolder.getContext().authentication.principal as String
+        return userServices.updateUser(id, user.mapToCustomer()).toResponse()
+    }
 }
